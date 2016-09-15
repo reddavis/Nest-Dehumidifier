@@ -23,6 +23,8 @@
 ], :max => @max_temp_value, :min => @min_temp_value
 %>
 
+</br>
+
 <%= line_chart [
   {name: "Humidity", data: @readings.map {|x| [x.created_at, x.humidity] }},
   {name: "Outside Humidity", data: @readings.map {|x| [x.created_at, x.outside_humidity] }}
