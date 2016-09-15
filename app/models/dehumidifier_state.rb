@@ -1,0 +1,2 @@
+class DehumidifierState < ApplicationRecord
+end

@@ -1,0 +1,49 @@
+{
+  "name": "Nest Controlled Dehumidifier",
+  "description": "A Nest controlled dehumidifier",
+  "repository": "https://github.com/heroku/node-js-sample",
+  "website": "http://red.to",
+  "scripts": {
+    "postdeploy": "rake db:migrate"
+  },
+  "env": {
+    "NEST_EMAIL": {
+      "description": "Your Nest email address."
+    },
+    "NEST_PASSWORD": {
+      "description": "Your Nest password."
+    },
+    "IFTTT_TURN_ON": {
+      "description": "IFTTT URL for turning ON the dehumidifier."
+    },
+    "IFTTT_TURN_OFF": {
+      "description": "IFTTT URL for turning OFF the dehumidifier."
+    },
+    "HUMIDITY_THRESHOLD": {
+      "description": "Humidity threshold."
+    },
+    "FORECAST_IO": {
+      "description": "Forecast IO API Key - https://developer.forecast.io"
+    },
+    "LATITUDE": {
+      "description": "Your latitide"
+    },
+    "LONGITUDE": {
+      "description": "Your longitude"
+    }
+  },
+  "addons": [
+    "openredis",
+    {
+      "plan": "scheduler:standard"
+    },
+    {
+      "plan": "heroku-postgresql"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}

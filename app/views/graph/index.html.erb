@@ -1,0 +1,41 @@
+<center>
+<h2>Dehumidifier is currently <%= @dehumidifier_state.on ? "on" : "off" %></h2>
+
+<h2>Inside Temperature</h2> 
+<p><%= number_with_precision @last_reading.temperature, :precision => 0 %>&deg;C</p>
+
+<h2>Inside Humidity</h2>
+<p><%= number_with_precision @last_reading.humidity, :precision => 0 %>%</p>
+
+<h2>Outside Temperature</h2>
+<p><%= number_with_precision @last_reading.outside_temperature, :precision => 0 %>&deg;C</p>
+
+<h2>Outside Humidity</h2>
+<p><%= number_with_precision @last_reading.outside_humidity, :precision => 0 %>%</p>
+
+</center>
+  
+</br>
+
+<%= line_chart [
+  {name: "Temp", data: @readings.map {|x| [x.created_at, x.temperature] }},
+  {name: "Outside Temp", data: @readings.map {|x| [x.created_at, x.outside_temperature] }},
+], :max => @max_temp_value, :min => @min_temp_value
+%>
+
+<%= line_chart [
+  {name: "Humidity", data: @readings.map {|x| [x.created_at, x.humidity] }},
+  {name: "Outside Humidity", data: @readings.map {|x| [x.created_at, x.outside_humidity] }}
+], :max => @max_humidity_value, :min => @min_humidity_value
+%>
+
+<h2>FAQ's</h2>
+
+<h3>What is this?</h3>
+<p>In short, this is a webpage. For a longer answer I wrote a post about it which you can find <a href="http://red.to">here</a>.</p>
+
+<h3>I want one!</h3>
+<p>You can have one too! The code is open sourced and I <a href="http://red.to">wrote</a> about how to set it all up.</p>
+
+<h3>Who made this?</h3>
+<p><a href="http://red.to">I did</a>.</p>
