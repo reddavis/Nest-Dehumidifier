@@ -1,3 +1,5 @@
+<% if @readings.any? %>
+
 <center>
 <h2>Dehumidifier is currently <%= @dehumidifier_state.on ? "on" : "off" %></h2>
 
@@ -30,6 +32,10 @@
   {name: "Outside Humidity", data: @readings.map {|x| [x.created_at, x.outside_humidity] }}
 ], :max => @max_humidity_value, :min => @min_humidity_value
 %>
+
+<% else %>
+  <center><h2>Doesn't look like you have any readings yet!</h2></center>
+<% end %>
 
 <h2>FAQ's</h2>
 
