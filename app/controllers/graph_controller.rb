@@ -1,6 +1,6 @@
 class GraphController < ApplicationController
   def index
-    @readings = Reading.order('created_at DESC').all.to_a
+    @readings = Reading.order('created_at DESC').limit(144).all.to_a
     
     all_temp_values = @readings.map {|x| [x.temperature, x.outside_temperature] }.flatten
     @max_temp_value = all_temp_values.max
