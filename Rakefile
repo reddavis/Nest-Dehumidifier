@@ -7,6 +7,11 @@ Rails.application.load_tasks
 
 
 task :collect_reading => :environment do
+  if Reading.count > 5000
+    Reading.delete_all
+    DehumidifierState.delete_all
+  end
+  
   nest = NestThermostat::Nest.new(email: ENV['NEST_EMAIL'], password: ENV['NEST_PASSWORD'], temperature_scale: :celsius)
   temperature = nest.current_temp
   humidity = nest.humidity
