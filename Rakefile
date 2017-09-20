@@ -40,3 +40,9 @@ task :collect_reading => :environment do
     end
   end
 end
+
+
+task :purge_database => :environment do
+  Reading.delete_all
+  DehumidifierState.delete_all
+end
